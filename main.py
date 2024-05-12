@@ -1,6 +1,7 @@
 import os
 from time import time
 from arraystack import ArrayStack
+from linkedqueue import LinkedQueue
 
 A = [1,2,6,6]
 B = [4,5,6]
@@ -58,17 +59,20 @@ def is_matched(expr):
         return False
   return S.is_empty()
 
-
-
 def main() -> None:
   os.system("clear")
   start_time = time()
   #  code here
+  lqueue = LinkedQueue()
+  lqueue.enqueue(1)
+  lqueue.enqueue(2)
+  lqueue.enqueue(3)
+  lqueue.enqueue(4)
   
-  stack= ArrayStack()
+  for i in range(lqueue.__len__()):
+    print(f"element out queue {lqueue.dequeue()}")
   
-  expr = "{[]}"
-  print(f"match {is_matched(expr)}")
+  print(f"list empty {lqueue.is_empty()}")
      
   end_time = time()
   elapsed = end_time - start_time
