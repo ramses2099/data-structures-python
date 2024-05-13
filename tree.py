@@ -1,27 +1,50 @@
+class Node:
+    def __init__(self, data=None) -> None:
+        self.left = None
+        self.right = None
+        self.data = data
+
 class Tree:
-    
-    #-----------------Child Private class------------------------------------
-    class _Node:
-        def __init__(self, data) -> None:
-            self._left = None
-            self._right = None
-            self._data = data
-   #-----------------Child Private class------------------------------------
-   
-    def __init__(self):
-      self.head = None
-   
+
+    def __init__(self, data):
+        self.root = Node(data)
+        
     def insert(self, data):
-       if self.head is None:
-           self.head = self._Node(data)
-       else:
-           if self.head._data < data:
-               if self.head._left is None:
-                   self.head._left = self._Node(data)
-               else:
-                   self.insert(data)
-           else:
-               if self.head._right is None:
-                   self.head._right = self._Node(data)
-               else:
-                   self.insert(data) 
+        if self.root is None:
+            self.root = Node(data)
+        else:
+            self._insert(data, self.root)
+
+    def _insert(self, data, cur_node):
+        if data < cur_node.data:
+            if cur_node.left is None:
+                cur_node.left = Node(data)
+            else:
+                self._insert(data, cur_node.left)
+        elif data > cur_node.data:
+            if cur_node.right is None:
+                cur_node.right = Node(data)
+            else:
+                self._insert(data, cur_node.right)
+        else:
+            print("Value is already present in tree")
+
+    def find(self, data):
+        if self.root:
+            is_found = self._find(data, self.root)
+            if is_found:
+                return True
+            return False
+        else:
+            return None
+    
+    def _find(self, data, cur_node):
+        if data > cur_node.data and cur_node.right:
+            return self._find(data, cur_node.right)
+        elif data < cur_node.data and cur_node.left:
+            return self._find(data, cur_node.left)
+        if data == cur_node.data:
+            return True
+        
+    # traversals
+    
