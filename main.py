@@ -1,7 +1,8 @@
 import os
 from time import time
 from arraystack import ArrayStack
-from linkedqueue import LinkedQueue
+from singlelinkedlist import SingleLinkedList
+from doublylinkedlist import DoublyLinkedList
 
 A = [1,2,6,6]
 B = [4,5,6]
@@ -63,16 +64,33 @@ def main() -> None:
   os.system("clear")
   start_time = time()
   #  code here
-  lqueue = LinkedQueue()
-  lqueue.enqueue(1)
-  lqueue.enqueue(2)
-  lqueue.enqueue(3)
-  lqueue.enqueue(4)
+  dblll = DoublyLinkedList()
+  nd1 = DoublyLinkedList._Node(1)
+  dblll.head = nd1
+  nd2 = DoublyLinkedList._Node(2)
+  nd1._next = nd2
+  nd2._prev = nd1  
+  nd3 = DoublyLinkedList._Node(3)
+  nd2._next = nd3
+  nd3._prev = nd2 
+  nd4 = DoublyLinkedList._Node(4)
+  nd3._next = nd4
+  nd4._prev = nd3
+  dblll.insertion_at_begin(0)
+  dblll.insertion_at_end(5)
+  dblll.insertion_at_begin(-2)
   
-  for i in range(lqueue.__len__()):
-    print(f"element out queue {lqueue.dequeue()}")
+  dblll.insertion_at_specified_node(1,-1)
   
-  print(f"list empty {lqueue.is_empty()}")
+  dblll.forward_traversal()
+  print()
+  dblll.backward_traversal() 
+  
+  dblll.delete_at_begining()
+  print()
+  dblll.forward_traversal()
+  print()
+  dblll.backward_traversal() 
      
   end_time = time()
   elapsed = end_time - start_time
