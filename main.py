@@ -1,9 +1,11 @@
 import os
+from style import Style
 from time import time
 from arraystack import ArrayStack
 from singlelinkedlist import SingleLinkedList
 from doublylinkedlist import DoublyLinkedList
 from tree import Tree
+
 
 A = [1,2,6,6]
 B = [4,5,6]
@@ -77,11 +79,16 @@ def main() -> None:
   
   print(bst.find(4))
   print(bst.find(10))
-   
-     
+  print(Style.GREEN + "Preorder traversal " + bst.print_tree("preorder"))
+  print()
+  print(Style.YELLOW + "In order traversal " + bst.print_tree("inorder"))
+  print()
+  print(Style.BLUE + "Post order traversal " + bst.print_tree("postorder"))
+  
   end_time = time()
   elapsed = end_time - start_time
-  print()
+  print(Style.WHITE)
+    
   print(f"duration of the execution {elapsed:.2f}")
       
 if __name__ == "__main__":

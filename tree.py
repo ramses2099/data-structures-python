@@ -45,6 +45,38 @@ class Tree:
             return self._find(data, cur_node.left)
         if data == cur_node.data:
             return True
+    
+    def print_tree(self, traversal_type):
+        if traversal_type == "preorder":
+            return self.preorder_print(self.root, "")
+        elif traversal_type == "inorder":
+            return self.inorder_print(self.root, "")
+        elif traversal_type == "postorder":
+            return self.postorder_print(self.root, "")
         
     # traversals
+    def preorder_print(self, start, traversal):
+        """Root->Left->Right"""
+        if start:
+            traversal += (str(start.data) + "-")
+            traversal = self.preorder_print(start.left, traversal)
+            traversal = self.preorder_print(start.right, traversal)
+        return traversal
     
+    # in-order
+    def inorder_print(self, start, traversal):
+        """Left->Root->Right"""
+        if start:
+            traversal = self.preorder_print(start.left, traversal)
+            traversal += (str(start.data) + "-")            
+            traversal = self.preorder_print(start.right, traversal)
+        return traversal
+    
+    # post-order
+    def postorder_print(self, start, traversal):
+        """Left->Rigth->Root"""
+        if start:
+            traversal = self.preorder_print(start.left, traversal)
+            traversal = self.preorder_print(start.right, traversal)
+            traversal += (str(start.data) + "-") 
+        return traversal
